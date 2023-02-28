@@ -2,7 +2,6 @@ package forms.base;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
 import static utils.Singleton.getWebDriverInstance;
 
 
