@@ -15,7 +15,6 @@ public class ApplicationApi {
     private final ConfigReader reader = new ConfigReader();
     private final String url = reader.getValue("baseUrl");
 
-
     public List<Book> getListOfBooks() {
         return given()
                 .when().contentType(JSON).get(url + BOOKS)
@@ -23,7 +22,6 @@ public class ApplicationApi {
                 .statusCode(HttpStatus.SC_OK).log().all().extract()
                 .response().jsonPath().getList("books", Book.class);
     }
-
 
     public void checkAuthUser(String userName, String password) {
         Credentials credentials = new Credentials(userName, password);
@@ -41,6 +39,5 @@ public class ApplicationApi {
                 .when().post(url + AUTHORIZATION)
                 .then().assertThat().statusCode(HttpStatus.SC_OK)
                 .log().all();
-
     }
 }

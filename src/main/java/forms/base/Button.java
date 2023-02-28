@@ -2,7 +2,6 @@ package forms.base;
 
 import org.openqa.selenium.By;
 
-
 public class Button extends BaseElement {
     private By locator;
     private String name;
