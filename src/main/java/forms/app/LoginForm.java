@@ -13,7 +13,6 @@ public class LoginForm extends BaseForm {
     private final TextBox txbUserName = new TextBox(driver,By.id("userName"), "TextBox UserName");
     private final TextBox txbPassword = new TextBox(driver,By.id("password"), "TextBox Password");
     private final Button btnLogin = new Button(driver,By.id("login"), "Button Login");
-    private final Label lblMessage=new Label(driver,By.className("mb-1"),"Label Message");
 
     public LoginForm(WebDriver driver) {
         super(driver,locator, name);
@@ -32,9 +31,5 @@ public class LoginForm extends BaseForm {
     public void clickBtnLogin() {
         btnLogin.scrollToElement();
         btnLogin.click();
-    }
-
-    public String getMessage(){
-        return lblMessage.getText();
     }
 }
