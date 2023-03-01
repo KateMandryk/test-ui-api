@@ -8,6 +8,6 @@ In the project I used:
 
 -Page Object Pattern.
 
--WebdriverManager.
+-WebDriverManager.
 
--Log4j for loggin.
+-Log4j for logging.
