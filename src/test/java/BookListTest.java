@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TestBookList extends BaseTest {
+public class BookListTest extends BaseTest {
 
 
     @Test

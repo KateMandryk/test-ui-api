@@ -4,7 +4,7 @@ import forms.app.LoginForm;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class TestLoginBookStore extends BaseTest {
+public class LoginBookStoreTest extends BaseTest {
     private final String userName = reader.getValue("userName");
     private final String password = reader.getValue("password");
 
