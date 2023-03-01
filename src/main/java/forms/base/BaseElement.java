@@ -8,7 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import utils.ConfigReader;
+import utils.DataReader;
 
 
 public abstract class BaseElement {
@@ -16,7 +16,7 @@ public abstract class BaseElement {
     private final By locator;
     private final String name;
     private final Logger log = LogManager.getLogger();
-    private final ConfigReader reader=new ConfigReader();
+    private final DataReader reader=new DataReader();
     private final Integer timeout=Integer.parseInt(reader.getValue("timeout"));
 
     public BaseElement(WebDriver driver,By locator, String name) {

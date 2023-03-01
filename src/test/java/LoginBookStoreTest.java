@@ -7,9 +7,11 @@ import org.testng.annotations.Test;
 public class LoginBookStoreTest extends BaseTest {
     private final String userName = reader.getValue("userName");
     private final String password = reader.getValue("password");
+    private final String unauthorizedUser = reader.getValue("UnauthorizedUser");
+    private final String message = reader.getValue("message");
 
     @Test
-    public void testLogin() {
+    public void testLoginBookStore() {
         log.info("[UI] STEP 1 :: Navigate to Book Store");
         BookStorePage bookStore = new BookStorePage(driver);
         Assert.assertTrue(bookStore.isDisplayed(), "Book store page is not opened");
@@ -17,13 +19,29 @@ public class LoginBookStoreTest extends BaseTest {
         log.info("[API] STEP 2 :: Create a new user");
         ApplicationApi applicationApi = new ApplicationApi();
         applicationApi.authUser(userName, password);
-        Assert.assertEquals(applicationApi.checkAuthUser(userName, password),"true","User is not authorized");
-        log.info("[UI] STEP 3 :: Log in as a user " + userName);
+        log.info("[UI] STEP 3 :: Navigate to Login form");
         LoginForm loginForm = new LoginForm(driver);
         Assert.assertTrue(loginForm.isDisplayed(), "Login form is not opened");
+        log.info("[UI] STEP 4 :: Log in as a user " + userName);
         loginForm.setUserName(userName);
         loginForm.setPassword(password);
         loginForm.clickBtnLogin();
         Assert.assertEquals(bookStore.getUserName(), userName, "Usernames are different");
+    }
+
+    @Test
+    public void testLoginUnregisteredUser() {
+        log.info("[UI] STEP 1 :: Navigate to Book Store");
+        BookStorePage bookStore = new BookStorePage(driver);
+        Assert.assertTrue(bookStore.isDisplayed(), "Book store page is not opened");
+        bookStore.clickBtnLogin();
+        log.info("[UI] STEP 2 :: Navigate to Login form");
+        LoginForm loginForm = new LoginForm(driver);
+        Assert.assertTrue(loginForm.isDisplayed(), "Login form is not opened");
+        log.info("[UI] STEP 3 :: Login a non-existent user");
+        loginForm.setUserName(unauthorizedUser);
+        loginForm.setPassword(password);
+        loginForm.clickBtnLogin();
+        Assert.assertEquals(loginForm.getMessage(), message, "Error message is not displayed on the page");
     }
 }

@@ -7,8 +7,8 @@ import org.json.simple.parser.ParseException;
 import java.io.IOException;
 import java.io.Reader;
 
-public class ConfigReader {
-    private final String file = "src/main/resources/config.json";
+public class DataReader {
+    private final String file = "src/main/resources/data.json";
 
     public String getValue(String name) {
         JSONParser parser = new JSONParser();

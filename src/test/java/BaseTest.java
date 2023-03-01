@@ -3,18 +3,18 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeTest;
-import utils.ConfigReader;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import utils.DataReader;
 
 public class BaseTest {
     public Logger log = LogManager.getLogger();
-    public ConfigReader reader = new ConfigReader();
+    public DataReader reader = new DataReader();
     private final String url = reader.getValue("url");
     protected WebDriver driver;
 
 
-    @BeforeTest
+    @BeforeMethod
     public void setUp() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -22,7 +22,7 @@ public class BaseTest {
         driver.get(url);
     }
 
-    @AfterTest
+    @AfterMethod
     public void close() {
         driver.quit();
     }
