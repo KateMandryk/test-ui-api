@@ -18,7 +18,7 @@ public class LoginBookStoreTest extends BaseTest {
         bookStore.clickBtnLogin();
         log.info("[API] STEP 2 :: Create a new user");
         ApplicationApi applicationApi = new ApplicationApi();
-        applicationApi.authUser(userName, password);
+        applicationApi.createUser(userName, password);
         log.info("[UI] STEP 3 :: Navigate to Login form");
         LoginForm loginForm = new LoginForm(driver);
         Assert.assertTrue(loginForm.isDisplayed(), "Login form is not opened");

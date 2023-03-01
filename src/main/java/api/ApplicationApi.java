@@ -24,7 +24,7 @@ public class ApplicationApi {
                 .response().jsonPath().getList("books", Book.class);
     }
 
-    public void authUser(String userName, String password) {
+    public void createUser(String userName, String password) {
         Credentials credentials = new Credentials(userName, password);
         given()
                 .log().body().contentType(JSON).body(credentials)
