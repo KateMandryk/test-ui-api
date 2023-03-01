@@ -23,12 +23,12 @@ public class ApplicationApi {
                 .response().jsonPath().getList("books", Book.class);
     }
 
-    public void checkAuthUser(String userName, String password) {
+    public String checkAuthUser(String userName, String password) {
         Credentials credentials = new Credentials(userName, password);
-        given()
+        return given()
                 .log().body().contentType(JSON).body(credentials)
-                .when().post(url + USER)
-                .then().log().all();
+                .when().post(url + AUTHORIZED_USER)
+                .then().log().all().extract().body().asString();
     }
 
     public void authUser(String userName, String password) {

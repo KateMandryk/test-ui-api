@@ -14,10 +14,10 @@ public class LoginBookStoreTest extends BaseTest {
         BookStorePage bookStore = new BookStorePage(driver);
         Assert.assertTrue(bookStore.isDisplayed(), "Book store page is not opened");
         bookStore.clickBtnLogin();
-        log.info("[API] STEP 2 :: Registering a new user");
+        log.info("[API] STEP 2 :: Create a new user");
         ApplicationApi applicationApi = new ApplicationApi();
         applicationApi.authUser(userName, password);
-        applicationApi.checkAuthUser(userName, password);
+        Assert.assertEquals(applicationApi.checkAuthUser(userName, password),"true","User is not authorized");
         log.info("[UI] STEP 3 :: Log in as a user " + userName);
         LoginForm loginForm = new LoginForm(driver);
         Assert.assertTrue(loginForm.isDisplayed(), "Login form is not opened");
