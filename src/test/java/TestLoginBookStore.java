@@ -1,6 +1,7 @@
 import api.ApplicationApi;
 import forms.app.BookStorePage;
 import forms.app.LoginForm;
+import org.apache.hc.core5.http.HttpStatus;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 

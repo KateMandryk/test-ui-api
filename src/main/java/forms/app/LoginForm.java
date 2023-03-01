@@ -16,16 +16,19 @@ public class LoginForm extends BaseForm {
         super(locator, name);
     }
 
-    public void setUserName(String name) {
+    public LoginForm setUserName(String name) {
         txbUserName.typeText(name);
+        return this;
     }
 
-    public void setPassword(String password) {
+    public LoginForm setPassword(String password) {
         txbPassword.typeText(password);
+        return this;
     }
 
-    public void clickBtnLogin() {
+    public BookStorePage clickBtnLogin() {
         btnLogin.scrollToElement();
         btnLogin.click();
+        return new BookStorePage();
     }
 }

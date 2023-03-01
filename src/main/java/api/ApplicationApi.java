@@ -18,7 +18,7 @@ public class ApplicationApi {
 
     public List<Book> getBookList() {
         return given()
-          .when().contentType(ContentType.JSON).get(url+BOOKS)
+          .when().contentType(JSON).get(url+BOOKS)
                 .then().assertThat()
                 .statusCode(HttpStatus.SC_OK).log().all().extract()
                 .response().jsonPath().getList("books", Book.class);
@@ -29,8 +29,7 @@ public class ApplicationApi {
         given()
                 .log().body().contentType(JSON).body(credentials)
                 .when().post(url + USER)
-                .then().assertThat().statusCode(HttpStatus.SC_CREATED)
-                .log().all();
+                .then() .log().all();
     }
 
     public void authUser(String userName, String password) {

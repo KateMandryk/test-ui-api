@@ -20,13 +20,17 @@ public class BookStorePage extends BaseForm {
     private final Label lblUserName = new Label(By.id("userName-value"), "Label UserName");
     private final By row = By.xpath("//div[contains(@class,'rt-tr-group')]");
     private final By sell = By.xpath(".//div[contains(@class,'rt-td')]");
+    private final int indexTitleSell=1;
+    private final int indexAuthorSell=2;
+    private final int indexPublisherSell=3;
 
     public BookStorePage() {
         super(locator, name);
     }
 
-    public void clickBtnLogin() {
+    public LoginForm clickBtnLogin() {
         btnLogin.click();
+        return new LoginForm();
     }
 
     public String getUserName() {
@@ -45,9 +49,9 @@ public class BookStorePage extends BaseForm {
     public Book createTable(WebElement row) {
         Book book = new Book();
         List<WebElement> cellTable = row.findElements(sell);
-        book.setTitle(cellTable.get(1).getText());
-        book.setAuthor(cellTable.get(2).getText());
-        book.setPublisher(cellTable.get(3).getText());
+        book.setTitle(cellTable.get(indexTitleSell).getText());
+        book.setAuthor(cellTable.get(indexAuthorSell).getText());
+        book.setPublisher(cellTable.get(indexPublisherSell).getText());
         return book;
     }
 }
