@@ -1,6 +1,6 @@
 { "url": "https://demoqa.com/books",
   "baseUrl": "https://demoqa.com/",
-  "userName": "jon",
+  "userName": "jo",
   "password": "@rshsrt123AS#",
   "timeout": "100"
 }

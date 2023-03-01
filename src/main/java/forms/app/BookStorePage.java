@@ -12,7 +12,7 @@ import java.util.List;
 
 import static utils.Singleton.getWebDriverInstance;
 
-public class BookStore extends BaseForm {
+public class BookStorePage extends BaseForm {
 
     private static final By locator = By.xpath("//div[contains(@class,'main-header') and contains(text(),'Book Store')]");
     private static final String name = "Book Store";
@@ -21,7 +21,7 @@ public class BookStore extends BaseForm {
     private final By row = By.xpath("//div[contains(@class,'rt-tr-group')]");
     private final By sell = By.xpath(".//div[contains(@class,'rt-td')]");
 
-    public BookStore() {
+    public BookStorePage() {
         super(locator, name);
     }
 

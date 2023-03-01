@@ -16,11 +16,11 @@ public class LoginForm extends BaseForm {
         super(locator, name);
     }
 
-    public void typeUserName(String name) {
+    public void setUserName(String name) {
         txbUserName.typeText(name);
     }
 
-    public void typePassword(String password) {
+    public void setPassword(String password) {
         txbPassword.typeText(password);
     }
 
