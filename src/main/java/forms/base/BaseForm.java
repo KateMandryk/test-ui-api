@@ -1,21 +1,23 @@
 package forms.base;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import static utils.Singleton.getWebDriverInstance;
 
 
 public abstract class BaseForm {
+    protected WebDriver driver;
     private final By locator;
     private final String name;
 
-    protected BaseForm(By locator, String name) {
+    protected BaseForm(WebDriver driver,By locator, String name) {
+        this.driver=driver;
         this.locator = locator;
         this.name = name;
     }
 
     public boolean isDisplayed() {
-        WebElement element = getWebDriverInstance().findElement(locator);
+        WebElement element = driver.findElement(locator);
         return element.isDisplayed();
     }
 }

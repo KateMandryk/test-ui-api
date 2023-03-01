@@ -4,16 +4,17 @@ import forms.base.BaseForm;
 import forms.base.Button;
 import forms.base.TextBox;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 
 public class LoginForm extends BaseForm {
     private static final By locator = By.xpath("//div[contains(@class,'main-header') and contains(text(),'Login')]");
     private static final String name = "Login Form";
-    private final TextBox txbUserName = new TextBox(By.id("userName"), "TextBox UserName");
-    private final TextBox txbPassword = new TextBox(By.id("password"), "TextBox Password");
-    private final Button btnLogin = new Button(By.id("login"), "Button Login");
+    private final TextBox txbUserName = new TextBox(driver,By.id("userName"), "TextBox UserName");
+    private final TextBox txbPassword = new TextBox(driver,By.id("password"), "TextBox Password");
+    private final Button btnLogin = new Button(driver,By.id("login"), "Button Login");
 
-    public LoginForm() {
-        super(locator, name);
+    public LoginForm(WebDriver driver) {
+        super(driver,locator, name);
     }
 
     public LoginForm setUserName(String name) {
@@ -26,9 +27,8 @@ public class LoginForm extends BaseForm {
         return this;
     }
 
-    public BookStorePage clickBtnLogin() {
+    public void clickBtnLogin() {
         btnLogin.scrollToElement();
         btnLogin.click();
-        return new BookStorePage();
     }
 }
