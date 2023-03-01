@@ -3,6 +3,6 @@
   "timeout": "10",
   "userName": "katerina",
   "password": "@rshsrt123AS#",
-  "UnauthorizedUser": "tim",
+  "UnregisteredUser": "tim",
   "message": "Invalid username or password!"
 }
