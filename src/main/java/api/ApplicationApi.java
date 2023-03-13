@@ -2,10 +2,12 @@ package api;
 
 import models.Book;
 import models.Credentials;
+import models.User;
 import org.apache.hc.core5.http.HttpStatus;
 import utils.DataReader;
 
 import java.util.List;
+import java.util.Map;
 
 import static api.Endpoints.BOOKS;
 import static api.Endpoints.USER;
@@ -24,11 +26,17 @@ public class ApplicationApi {
                 .response().jsonPath().getList("books", Book.class);
     }
 
-    public void createUser(String userName, String password) {
+    public Map<User,String> createUser(String userName, String password) {
         Credentials credentials = new Credentials(userName, password);
-        given()
+       return given()
                 .log().body().contentType(JSON).body(credentials)
                 .when().post(url + USER)
+                .then().log().all().extract().body().jsonPath().getMap(".");
+    }
+    public void deleteUser(String id){
+        given()
+                .log().body().contentType(JSON)
+                .when().delete(url + USER+"/"+id)
                 .then().log().all();
     }
 }

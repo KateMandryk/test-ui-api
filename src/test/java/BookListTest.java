@@ -5,6 +5,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class BookListTest extends BaseTest {
@@ -19,10 +20,9 @@ public class BookListTest extends BaseTest {
         ApplicationApi applicationApi = new ApplicationApi();
         List<Book> bookListApi = applicationApi.getBookList();
         List<String> titleApi = bookListApi.stream().map(Book::getTitle).collect(Collectors.toList());
-        int numberOfBooks = titleApi.size();
         log.info("[UI] STEP 3 :: Getting book list on the page");
         List<Book> bookListUI = bookStore.getTable();
-        List<String> titleUI = bookListUI.stream().map(Book::getTitle).limit(numberOfBooks).collect(Collectors.toList());
+        List<String> titleUI = bookListUI.stream().map(Book::getTitle).filter(x -> !x.equals(" ")).collect(Collectors.toList());
         Assert.assertEquals(titleApi, titleUI, "Titles of books do not match");
     }
 }

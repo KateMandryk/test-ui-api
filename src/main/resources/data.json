@@ -1,7 +1,5 @@
 { "url": "https://demoqa.com/books",
   "baseUrl": "https://demoqa.com/",
   "timeout": "10",
-  "userName": "katerina",
-  "password": "@rshsrt123AS#",
   "message": "Invalid username or password!"
 }
