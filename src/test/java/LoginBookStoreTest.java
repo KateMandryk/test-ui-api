@@ -30,7 +30,7 @@ public class LoginBookStoreTest extends BaseTest {
         loginForm.setPassword(password);
         loginForm.clickBtnLogin();
         Assert.assertEquals(bookStore.getUserName(), userName, "Usernames are different");
-        log.info("[API] STEP 4 :: Delete user " + userName);
+        log.info("[API] STEP 5 :: Delete user " + userName);
         applicationApi.deleteUser(user.get(userId));
     }
 }
