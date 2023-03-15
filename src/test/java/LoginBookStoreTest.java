@@ -10,7 +10,6 @@ import org.testng.annotations.Test;
 public class LoginBookStoreTest extends BaseTest {
     private final String userName = credentials.getLogin();
     private final String password = credentials.getPassword();
-    private final String userId = "userID";
     private final Integer timeout = Integer.parseInt(reader.getValue("timeout"));
     private final String message = reader.getValue("message");
 
