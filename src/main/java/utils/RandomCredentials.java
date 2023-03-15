@@ -5,18 +5,19 @@ import java.util.UUID;
 
 public class RandomCredentials {
 
-    public String getLogin(){
-        return  UUID.randomUUID().toString().replace("-","");
+    public String getLogin() {
+        return UUID.randomUUID().toString().replace("-", "");
     }
-    public String getPassword(){
+
+    public String getPassword() {
 
         String rndUpChar = "ABCDEFGHIJKLFGHJMNNVCXZ";
-        String rndLowChar="hfkyuuitjnaergwktsertyu";
-        String rndNumber="12345678904356567789801";
-        String rndDigit="@#$%$^&*()_<>?:)(+_)*#@";
+        String rndLowChar = "hfkyuuitjnaergwktsertyu";
+        String rndNumber = "12345678904356567789801";
+        String rndDigit = "@#$%$^&*##*<>?:&*+@$*#@";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
-        while (salt.length() < 12) {
+        while (salt.length() < 8) {
             int index = (int) (rnd.nextFloat() * rndUpChar.length());
             salt.append(rndUpChar.charAt(index));
             salt.append(rndLowChar.charAt(index));
@@ -24,4 +25,5 @@ public class RandomCredentials {
             salt.append(rndNumber.charAt(index));
         }
         return salt.toString();
-}}
+    }
+}

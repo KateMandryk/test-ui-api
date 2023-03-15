@@ -26,17 +26,11 @@ public class ApplicationApi {
                 .response().jsonPath().getList("books", Book.class);
     }
 
-    public Map<User,String> createUser(String userName, String password) {
+    public Map<User, String> createUser(String userName, String password) {
         Credentials credentials = new Credentials(userName, password);
-       return given()
-                .log().body().contentType(JSON).body(credentials)
+        return given()
+                .contentType(JSON).body(credentials)
                 .when().post(url + USER)
                 .then().log().all().extract().body().jsonPath().getMap(".");
-    }
-    public void deleteUser(String id){
-        given()
-                .log().body().contentType(JSON)
-                .when().delete(url + USER+"/"+id)
-                .then().log().all();
     }
 }

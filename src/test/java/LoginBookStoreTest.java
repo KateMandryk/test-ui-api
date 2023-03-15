@@ -1,17 +1,19 @@
 import api.ApplicationApi;
 import forms.app.BookStorePage;
 import forms.app.LoginForm;
-import models.User;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-
-import java.util.List;
-import java.util.Map;
 
 public class LoginBookStoreTest extends BaseTest {
     private final String userName = credentials.getLogin();
     private final String password = credentials.getPassword();
-    private final String userId="userID";
+    private final String userId = "userID";
+    private final Integer timeout = Integer.parseInt(reader.getValue("timeout"));
+    private final String message = reader.getValue("message");
+
 
     @Test
     public void testLoginBookStore() {
@@ -21,7 +23,7 @@ public class LoginBookStoreTest extends BaseTest {
         bookStore.clickBtnLogin();
         log.info("[API] STEP 2 :: Create a new user");
         ApplicationApi applicationApi = new ApplicationApi();
-        Map<User,String> user=applicationApi.createUser(userName, password);
+        applicationApi.createUser(userName, password);
         log.info("[UI] STEP 3 :: Navigate to Login form");
         LoginForm loginForm = new LoginForm(driver);
         Assert.assertTrue(loginForm.isDisplayed(), "Login form is not opened");
@@ -30,7 +32,17 @@ public class LoginBookStoreTest extends BaseTest {
         loginForm.setPassword(password);
         loginForm.clickBtnLogin();
         Assert.assertEquals(bookStore.getUserName(), userName, "Usernames are different");
-        log.info("[API] STEP 5 :: Delete user " + userName);
-        applicationApi.deleteUser(user.get(userId));
+        log.info("[UI] STEP 5 :: Delete user " + userName);
+        bookStore.clickBtnMenuLogin();
+        loginForm.clickBtnProfile();
+        bookStore.clickBtnDeleteAccount();
+        bookStore.clickBtnOk();
+        Alert alert = new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+        alert.accept();
+        log.info("[UI] STEP 6 ::Try to log in as a user " + userName + " after account deletion");
+        loginForm.setUserName(userName);
+        loginForm.setPassword(password);
+        loginForm.clickBtnLogin();
+        Assert.assertEquals(loginForm.getMsgLogin(), message, "Message is not displayed");
     }
 }
