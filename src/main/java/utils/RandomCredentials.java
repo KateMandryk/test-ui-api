@@ -10,11 +10,10 @@ public class RandomCredentials {
     }
 
     public String getPassword() {
-
         String rndUpChar = "ABCDEFGHIJKLFGHJMNNVCXZ";
         String rndLowChar = "hfkyuuitjnaergwktsertyu";
         String rndNumber = "12345678904356567789801";
-        String rndDigit = "@#$%$^&*##*<>?:&*+@$*#@";
+        String rndDigit = "@#$%$^&*##*<>:&*+@$*#@";
         StringBuilder salt = new StringBuilder();
         Random rnd = new Random();
         while (salt.length() < 8) {

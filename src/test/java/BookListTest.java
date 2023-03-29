@@ -1,16 +1,21 @@
 import api.ApplicationApi;
 import forms.app.BookStorePage;
+import io.qameta.allure.*;
 import models.Book;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Listeners(TestListener.class)
 public class BookListTest extends BaseTest {
 
-
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Story("The list of books on the Book Store page matches the list of books from the response API")
+    @Attachment(value = "Page screenshot", type = "image/png")
     public void testBookList() {
         log.info("[UI] STEP 1 :: Navigate to Book Store");
         BookStorePage bookStore = new BookStorePage(driver);

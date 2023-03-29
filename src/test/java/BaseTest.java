@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.BeforeTest;
 import utils.DataReader;
 import utils.RandomCredentials;
 
@@ -18,8 +16,7 @@ public abstract class BaseTest {
     public RandomCredentials credentials = new RandomCredentials();
     public String userName = credentials.getLogin();
     public String password = credentials.getPassword();
-
-    protected WebDriver driver;
+    protected static WebDriver driver;
 
     @BeforeMethod(onlyForGroups = {"login test"})
     public void createUser() {
@@ -37,7 +34,7 @@ public abstract class BaseTest {
     }
 
     @AfterMethod
-    public void close() {
+    public void tearDown() {
         driver.quit();
     }
 }

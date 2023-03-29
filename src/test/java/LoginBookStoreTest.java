@@ -1,11 +1,18 @@
 import api.ApplicationApi;
 import forms.app.BookStorePage;
 import forms.app.LoginForm;
+import io.qameta.allure.Attachment;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
+
+@Listeners(TestListener.class)
 
 public class LoginBookStoreTest extends BaseTest {
     private final Integer timeout = Integer.parseInt(reader.getValue("timeout"));
@@ -13,6 +20,8 @@ public class LoginBookStoreTest extends BaseTest {
 
 
     @Test(groups = {"login test"})
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Log in user")
     public void testLoginBookStore() {
         log.info("[UI] STEP 1 :: Navigate to Book Store");
         BookStorePage bookStore = new BookStorePage(driver);
