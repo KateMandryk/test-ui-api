@@ -3,7 +3,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import utils.DataReader;
@@ -15,7 +16,7 @@ public abstract class BaseTest {
     private final String url = reader.getValue("url");
     public RandomCredentials credentials = new RandomCredentials();
     public String userName = credentials.getLogin();
-    public String password = credentials.getPassword();
+    public String password = credentials. getPassword();
     protected static WebDriver driver;
 
     @BeforeMethod(onlyForGroups = {"login test"})
@@ -27,14 +28,16 @@ public abstract class BaseTest {
 
     @BeforeMethod
     public void setUp() {
-        WebDriverManager.edgedriver().setup();
-        driver = new EdgeDriver();
+        WebDriverManager.chromedriver().setup();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        driver=new ChromeDriver(options);
         log.info("Browser ready...");
         driver.get(url);
     }
 
     @AfterMethod
     public void tearDown() {
-        driver.quit();
+       driver.quit();
     }
 }

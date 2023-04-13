@@ -1,5 +1,4 @@
 { "url": "https://demoqa.com/books",
   "baseUrl": "https://demoqa.com/",
-  "timeout": "10",
   "message": "Invalid username or password!"
 }

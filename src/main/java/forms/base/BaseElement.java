@@ -10,14 +10,14 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utils.DataReader;
 
+import java.time.Duration;
+
 
 public abstract class BaseElement {
     protected WebDriver driver;
     private final By locator;
     private final String name;
     private final Logger log = LogManager.getLogger();
-    private final DataReader reader=new DataReader();
-    private final Integer timeout=Integer.parseInt(reader.getValue("timeout"));
 
     public BaseElement(WebDriver driver,By locator, String name) {
         this.driver=driver;
@@ -41,12 +41,12 @@ public abstract class BaseElement {
 
     public String getText() {
         log.info(name + ":: Getting text from element");
-        WebElement myElement = new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement myElement = new WebDriverWait(driver, Duration.ofMillis(500L)).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return myElement.getText();
     }
 
     public void scrollToElement(){
-        WebElement myElement = new WebDriverWait(driver, timeout).until(ExpectedConditions.visibilityOf(getElement()));
+        WebElement myElement = new WebDriverWait(driver, Duration.ofMillis(500L)).until(ExpectedConditions.visibilityOf(getElement()));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", myElement);
     }
 }
