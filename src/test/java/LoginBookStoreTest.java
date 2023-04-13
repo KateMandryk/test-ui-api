@@ -12,10 +12,11 @@ import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import java.time.Duration;
+
 @Listeners(TestListener.class)
 
 public class LoginBookStoreTest extends BaseTest {
-    private final Integer timeout = Integer.parseInt(reader.getValue("timeout"));
     private final String message = reader.getValue("message");
 
 
@@ -40,7 +41,7 @@ public class LoginBookStoreTest extends BaseTest {
         loginForm.clickBtnProfile();
         bookStore.clickBtnDeleteAccount();
         bookStore.clickBtnOk();
-        Alert alert = new WebDriverWait(driver, timeout).until(ExpectedConditions.alertIsPresent());
+        Alert alert = new WebDriverWait(driver, Duration.ofMillis(500L)).until(ExpectedConditions.alertIsPresent());
         alert.accept();
         log.info("[UI] STEP 5 ::Try to log in as a user " + userName + " after account deletion");
         loginForm.setUserName(userName);
