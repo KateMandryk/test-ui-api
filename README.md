@@ -1,4 +1,4 @@
-Tests:
+Tests (UI + APIs) https://demoqa.com/:
 
 1.Check the basic login functionality (the ability to log in) in the Book Store web application.
 
