@@ -41,12 +41,12 @@ public abstract class BaseElement {
 
     public String getText() {
         log.info(name + ":: Getting text from element");
-        WebElement myElement = new WebDriverWait(driver, Duration.ofMillis(500L)).until(ExpectedConditions.visibilityOfElementLocated(locator));
+        WebElement myElement = new WebDriverWait(driver, 100).until(ExpectedConditions.visibilityOfElementLocated(locator));
         return myElement.getText();
     }
 
     public void scrollToElement(){
-        WebElement myElement = new WebDriverWait(driver, Duration.ofMillis(500L)).until(ExpectedConditions.visibilityOf(getElement()));
+        WebElement myElement = new WebDriverWait(driver, 100).until(ExpectedConditions.visibilityOf(getElement()));
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView();", myElement);
     }
 }
